@@ -12,8 +12,9 @@ jobs:
 
     env:
       AWS_REGION: us-east-1
-      ECR_WEBAPP_REPO: 855529033156.dkr.ecr.us-east-1.amazonaws.com/clo835-mysql
-      ECR_MYSQL_REPO: 855529033156.dkr.ecr.us-east-1.amazonaws.com/clo835-webapp
+      ECR_WEBAPP_REPO: 855529033156.dkr.ecr.us-east-1.amazonaws.com/clo835-webapp
+      ECR_MYSQL_REPO: 855529033156.dkr.ecr.us-east-1.amazonaws.com/clo835-mysql
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -32,10 +33,10 @@ jobs:
 
     - name: Build and push Webapp image
       run: |
-        docker build -t $ECR_WEBAPP_REPO:latest .
+        docker build --no-cache -t $ECR_WEBAPP_REPO:latest .
         docker push $ECR_WEBAPP_REPO:latest
 
     - name: Build and push MySQL image
       run: |
-        docker build -f Dockerfile_mysql -t $ECR_MYSQL_REPO:latest .
+        docker build --no-cache -f Dockerfile_mysql -t $ECR_MYSQL_REPO:latest .
         docker push $ECR_MYSQL_REPO:latest
