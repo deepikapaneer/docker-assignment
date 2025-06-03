@@ -1,6 +1,5 @@
 FROM ubuntu:20.04
 
-
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies
@@ -20,5 +19,5 @@ RUN pip3 install --no-cache-dir --upgrade pip && \
 EXPOSE 8080
 
 # Run the app
-ENTRYPOINT [ "python3" ]
-CMD [ "app.py" ]
+ENTRYPOINT ["python3"]
+CMD ["app.py"]
